@@ -144,7 +144,7 @@ console.log(foo); // undefined
 
 ### What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
 
-**Undeclared** variables are created when you assign a value to an identifier that is not previously created using `var`, `let` or `const`. Undeclared variables will be defined globally, outside of the current scope. In strict mode, a `ReferenceError` will be thrown when you try to assign to an undeclared variable. Undeclared variables are bad just like how global variables are bad. Avoid them at all cost! To check for them, wrap its usage in a `try`/`catch` block.
+Variáveis **Undeclared** são criadas quando você atribui um valor para um identificador que não foi criado previamente usando `var`, `let` ou `const`. Variáveis Undeclared não podem ser definidas globalmente, fora de um scopo atual. Em strict mode, um `ReferenceError` irá aparacer quando você tentar atribuir para uma variável undeclared. Variáveis Undeclared são más como variáveis globais são más. Evite-os a todo custo! Para verificá-los, envolva seu uso em um bloco `try`/`catch`
 
 ```js
 function foo() {
@@ -155,7 +155,7 @@ foo();
 console.log(x); // 1
 ```
 
-A variable that is `undefined` is a variable that has been declared, but not assigned a value. It is of type `undefined`. If a function does not return any value as the result of executing it is assigned to a variable, the variable also has the value of `undefined`. To check for it, compare using the strict equality (`===`) operator or `typeof` which will give the `'undefined'` string. Note that you should not be using the abstract equality operator to check, as it will also return `true` if the value is `null`.
+Uma variável que é `undefined` é uma variável que foi declarada, mas não foi atribuido um valor. Isso é o tipo `undefined`. Se uma função não retornar nenhum valor o resultado da execução é atribuido para uma variável, a variável também tem o valor de `undefined`. Para checar isso, compare usando o operador de igualdade estrita (`===`) ou `typeof` que eles daram a string `undefined`. Observe que você não deve estar usando o operador de igualdade abstrata para verificar, como isso retorna `true` se o valor for `null`.
 
 ```js
 var foo;
@@ -170,7 +170,7 @@ var baz = bar();
 console.log(baz); // undefined
 ```
 
-A variable that is `null` will have been explicitly assigned to the `null` value. It represents no value and is different from `undefined` in the sense that it has been explicitly assigned. To check for `null,` simply compare using the strict equality operator. Note that like the above, you should not be using the abstract equality operator (`==`) to check, as it will also return `true` if the value is `undefined`.
+Uma vaiável que é `null` deve ter explicito e atribuido o valor `null`. Isso representa sem valor e é diferente de `undefined` no sentido em que foi explicitamente atribuído. Para checar o `null`, simplismtente compare usando o operador Igualdade estrita. Observe que como acima, você não deve estart usando o operador de igualdade abstrata (`==`) para checar, como isso retorna `true` se o valor for `undefined`.
 
 ```js
 var foo = null;
@@ -180,7 +180,7 @@ console.log(typeof foo === 'object'); // true
 console.log(foo == undefined); // true. Wrong, don't use this to check!
 ```
 
-As a personal habit, I never leave my variables undeclared or unassigned. I will explicitly assign `null` to them after declaring if I don't intend to use it yet. If you use a linter in your workflow, it will usually also be able to check that you are not referencing undeclared variables.
+Como um hábito pessoal, Eu nunca deixo minhas variáveis undeclared ou não atribuido. Eu designarei explicitamente `null` para eles depois de declarar se não pretendo usá-lo ainda. Se você usar um linter em seu workflow, normalmente também será capaz de verificar se você não está referenciando variáveis undeclared
 
 ###### Referências
 
@@ -191,9 +191,9 @@ As a personal habit, I never leave my variables undeclared or unassigned. I will
 
 ### What is a closure, and how/why would you use one?
 
-A closure is the combination of a function and the lexical environment within which that function was declared. The word "lexical" refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Closures are functions that have access to the outer (enclosing) function's variables—scope chain even after the outer function has returned.
+Um closure é uma combinação de uma função e o ambiente léxico no qual essa função foi declarada. A palavra "léxico" refere o fato que o scopo léxico usa a localização onde a variável é declarada dentro do código fonte para determinar onde que a variável é acessível. Closures são funções que tem acesso para outras (enclosing) funções com variávies-escopo mesmo após a função externa ter retornado.
 
-**Why would you use one?**
+**Porque devemos usar?**
 
 * Data privacy / emulating private methods with closures. Commonly used in the [module pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript).
 * [Partial applications or currying](https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.l4b6l1i3x).
@@ -207,13 +207,13 @@ A closure is the combination of a function and the lexical environment within wh
 
 ### Can you describe the main difference between a `.forEach` loop and a `.map()` loop and why you would pick one versus the other?
 
-To understand the differences between the two, let's look at what each function does.
+Para entender as diferenças entre as duas, vamos olhar o que cada função faz.
 
 **`forEach`**
 
-* Iterates through the elements in an array.
-* Executes a callback for each element.
-* Does not return a value.
+* Itera através dos elementos em uma matriz.
+* Executa um retorno de chamada para cada elemento.
+* Não retorna um valor.
 
 ```js
 const a = [1, 2, 3];
@@ -226,8 +226,8 @@ const doubled = a.forEach((num, index) => {
 
 **`map`**
 
-* Iterates through the elements in an array.
-* "Maps" each element to a new element by calling the function on each element, creating a new array as a result.
+* Itera através dos elementos em uma matriz.
+* "Mapeia" cada elemento para um novo elemento chamando a função em cada elemento, criando uma nova matriz como resultado.
 
 ```js
 const a = [1, 2, 3];
@@ -237,8 +237,8 @@ const doubled = a.map(num => {
 
 // doubled = [2, 4, 6]
 ```
+A principal diferença entre `.forEach` e `.map()` é que `.map()` retorna um novo array. Se você presica do resultado mas não deseja mudar o array original, `.map()` é a escolha certa. Se você simplismente precissa iterar um array, `forEach` é a escolha fina.
 
-The main difference between `.forEach` and `.map()` is that `.map()` returns a new array. If you need the result, but do not wish to mutate the original array, `.map()` is the clear choice. If you simply need to iterate over an array, `forEach` is a fine choice.
 
 ###### Referências
 
@@ -248,7 +248,7 @@ The main difference between `.forEach` and `.map()` is that `.map()` returns a n
 
 ### What's a typical use case for anonymous functions?
 
-They can be used in IIFEs to encapsulate some code within a local scope so that variables declared in it do not leak to the global scope.
+Eles podem usar IIFEs para encapsular alguns coódigos dentro de um escopo local que declarações de variáveis não vazam para o escopo global.
 
 ```js
 (function() {
@@ -256,7 +256,7 @@ They can be used in IIFEs to encapsulate some code within a local scope so that 
 })();
 ```
 
-As a callback that is used once and does not need to be used anywhere else. The code will seem more self-contained and readable when handlers are defined right inside the code calling them, rather than having to search elsewhere to find the function body.
+Como um callback que é usado uma vez e não precisa ser usado em nenhum outro lugar. O código parecerá mais auto-contido e legível quando os manipuladores estiverem definidos dentro do código que os chama, em vez de ter que procurar em outro lugar para encontrar o corpo da função.
 
 ```js
 setTimeout(function() {
@@ -264,7 +264,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
-Arguments to functional programming constructs or Lodash (similar to callbacks).
+Argumentos para programação funcional ou Lodash (parecido com callbacks).
 
 ```js
 const arr = [1, 2, 3];
@@ -283,19 +283,21 @@ console.log(double); // [2, 4, 6]
 
 ### How do you organize your code? (module pattern, classical inheritance?)
 
-In the past, I used Backbone for my models which encourages a more OOP approach, creating Backbone models and attaching methods to them.
+No passado, eu usava Backbone para meus modelos que encoraja mais abordagem em OOP, criando com modelo do Backbone e anexando metodos para eles
 
-The module pattern is still great, but these days, I use React/Redux which utilize a single-directional data flow based on Flux architecture. I would represent my app's models using plain objects and write utility pure functions to manipulate these objects. State is manipulated using actions and reducers like in any other Redux application.
 
-I avoid using classical inheritance where possible. When and if I do, I stick to [these rules](https://medium.com/@dan_abramov/how-to-use-classes-and-sleep-at-night-9af8de78ccb4).
+Esse modelo padronizado era bom mas nesses dias eu uso React/Redux no qual utiliza fluxos de dados unico-direcional baseado na arquitetura Flux. Eu gostaria de usar em meus apps modelos que usam objetos simples e escrever funções puras do utilitário para manipular esses objetos. Estado é manipulado usando actions e reducers como em qualquer aplicação com Redux.
+
+Eu evito usar herança clássica quando possível. Quando e se eu faço, eu me ater a [essas regras](https://medium.com/@dan_abramov/how-to-use-classes-and-sleep-at-night-9af8de78ccb4)
 
 [[↑] Volte para o Topo](#js-questions)
 
 ### What's the difference between host objects and native objects?
 
-Native objects are objects that are part of the JavaScript language defined by the ECMAScript specification, such as `String`, `Math`, `RegExp`, `Object`, `Function`, etc.
+Objetos nativos são objetos que são parte da linguagem JavaScript definida pela especificação ECMAScript, como `String`, `Math`, `RegExp`, `Object`, `Function`, etc.
 
-Host objects are provided by the runtime environment (browser or Node), such as `window`, `XMLHTTPRequest`, etc.
+Objetos Hosts são fornecidos pelo ambiente de runtime (broser e Node), como são `window`, `XMLHTTPRequest`, etc.
+
 
 ###### Referências
 
@@ -305,11 +307,11 @@ Host objects are provided by the runtime environment (browser or Node), such as 
 
 ### Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
 
-This question is pretty vague. My best guess at its intention is that it is asking about constructors in JavaScript. Technically speaking, `function Person(){}` is just a normal function declaration. The convention is to use PascalCase for functions that are intended to be used as constructors.
+Essa questão é um pouco vaga. Meu melhor palpite é que ele está perguntando sobre construtores em JavaScript. Tecnicamente falando, `function Person () {}` é apenas uma declaração de função normal. A convenção é usar o PascalCase para funções que devem ser usadas como construtores.
 
-`var person = Person()` invokes the `Person` as a function, and not as a constructor. Invoking as such is a common mistake if it the function is intended to be used as a constructor. Typically, the constructor does not return anything, hence invoking the constructor like a normal function will return `undefined` and that gets assigned to the variable intended as the instance.
+`var person = Person ()` invoca o `Person` como uma função, e não como um construtor. Invocar como tal é um erro comum se a função se destina a ser usada como um construtor. Normalmente, o construtor não retorna nada, portanto, invocar o construtor como uma função normal retornará `undefined` e será atribuído à variável pretendida como a instância.
 
-`var person = new Person()` creates an instance of the `Person` object using the `new` operator, which inherits from `Person.prototype`. An alternative would be to use `Object.create`, such as: `Object.create(Person.prototype)`.
+`var person = new Person ()` cria uma instância do objeto `Person` usando o operador` new`, que herda de `Person.prototype`. Uma alternativa seria usar o `Object.create`, como:` Object.create (Person.prototype) `.
 
 ```js
 function Person(name) {
@@ -333,7 +335,7 @@ console.log(person.name); // "john"
 
 ### What's the difference between `.call` and `.apply`?
 
-Both `.call` and `.apply` are used to invoke functions and the first parameter will be used as the value of `this` within the function. However, `.call` takes in comma-separated arguments as the next arguments while `.apply` takes in an array of arguments as the next argument. An easy way to remember this is C for `call` and comma-separated and A for `apply` and an array of arguments.
+Ambos `.call` e `.apply` são uasdos para invocar funções que o primeiro parâmetro usaram o valor de this dentro da função. Entretanto, `.call` aceita argumentos separados por vírgula e `.apply` aceita um array como argumentos. Uma maneira fácil de lembrar disso é C para `call` e separados por vírgula e A para` apply` um Array.
 
 ```js
 function add(a, b) {
@@ -348,11 +350,12 @@ console.log(add.apply(null, [1, 2])); // 3
 
 ### Explain `Function.prototype.bind`.
 
-Taken word-for-word from [MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind):
+Texto da [MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind):
 
-> The `bind()` method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+> O método bind() cria uma nova função que, quando chamada, tem sua palavra-chave this definida com o valor fornecido, com uma sequência determinada de argumentos precedendo quaisquer outros que sejam fornecidos quando a nova função é chamada.
 
-In my experience, it is most useful for binding the value of `this` in methods of classes that you want to pass into other functions. This is frequently done in React components.
+
+Na minha experiência, é mais útil vincular o valor de `this` em métodos de classes que você deseja passar para outras funções. Isso é feito com frequência nos componentes do React.
 
 ###### Referências
 
